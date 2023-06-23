@@ -9,11 +9,14 @@ import (
 
 func ExecuteRestart(command string) {
 	sfArn := flag.String("sfArn", "", "Step function arn (required)")
-	unixTimestampFrom := flag.Int64("from", 0, "Unix timestamp from which the failed executions to be restarted")
-	unixTimestampTo := flag.Int64("to", 0, "Unix timestamp until which the failed executions to be restarted")
+	unixTimestampFrom := flag.Int64("from", 0, "Unix timestamp from (>= 0)")
+	unixTimestampTo := flag.Int64("to", 0, "Unix timestamp to (>= 0)")
 	flag.Parse()
 
-	if len(flag.Args()) != 1 || *sfArn == "" {
+	if len(flag.Args()) != 1 ||
+		*sfArn == "" ||
+		*unixTimestampFrom < 0 ||
+		*unixTimestampTo < 0 {
 		fmt.Fprintf(
 			os.Stderr,
 			"Usage:\n  %s %s %s\n\n",

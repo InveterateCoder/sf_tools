@@ -10,7 +10,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/sfn"
 )
 
-func Dump() {
+func Map(parallelListExecutions, parallelExecutionHistories int) {
+	fmt.Printf("Starting in parallel %d | %d\n", parallelListExecutions, parallelExecutionHistories)
 	settings := misc.ParseSFMap()
 	states := misc.GetStates()
 	sf := awshelp.NewSF(settings.SFArn, settings.FromUnixTimestamp, settings.ToUnixTimestamp)
@@ -55,7 +56,7 @@ func Dump() {
 							misc.AppendToStates(state)
 						}
 					}(execs[j])
-					if (j+1)%settings.ParallelExecutionHistories == 0 {
+					if (j+1)%parallelExecutionHistories == 0 {
 						historyWaitGroup.Wait()
 					}
 				}
@@ -68,7 +69,7 @@ func Dump() {
 			}
 			fmt.Printf("\rSkipping execs: %d", (i+1)*1000)
 		}
-		if (i+1)%settings.ParallelListExecutions == 0 {
+		if (i+1)%parallelListExecutions == 0 {
 			listWaitGroup.Wait()
 			misc.FlushSettings()
 			misc.FlushStates()

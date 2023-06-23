@@ -13,13 +13,11 @@ type SettingsItem struct {
 }
 
 type Settings struct {
-	SFArn                      string
-	NextToken                  *string
-	ParallelListExecutions     int
-	ParallelExecutionHistories int
-	FromUnixTimestamp          int64
-	ToUnixTimestamp            int64
-	States                     map[string]SettingsItem
+	SFArn             string
+	NextToken         *string
+	FromUnixTimestamp int64
+	ToUnixTimestamp   int64
+	States            map[string]SettingsItem
 }
 
 var _settings *Settings
@@ -40,12 +38,6 @@ func ParseSFMap() *Settings {
 		_settings = &settings
 		if _settings.SFArn == "" {
 			log.Fatal("Missing required \"SFArn\" in \"sf_map.json\"\n")
-		}
-		if _settings.ParallelListExecutions == 0 {
-			log.Fatal("Missing required \"ParallelListExecutions\" in \"sf_map.json\"\n")
-		}
-		if _settings.ParallelExecutionHistories == 0 {
-			log.Fatal("Missing required \"ParallelExecutionHistories\" in \"sf_map.json\"\n")
 		}
 		if _settings.States == nil {
 			log.Fatal("\"States\" must be properly specified in \"sf_map.json\"\n")

@@ -1,8 +1,6 @@
 {
 	"SFArn": "arn:aws:states:sa-east-1:787732066160:stateMachine:CustomerIOWorkflow-N9qFMNLBtmP3",
 	"NextToken": null,
-	"ParallelListExecutions": 3,
-	"ParallelExecutionHistories": 200,
 	"FromUnixTimestamp": 0,
 	"ToUnixTimestamp": 0,
 	"States": {
