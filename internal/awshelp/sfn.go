@@ -2,6 +2,8 @@ package awshelp
 
 import (
 	"encoding/json"
+	"fmt"
+	"os"
 	"reflect"
 	"unsafe"
 
@@ -87,6 +89,16 @@ func (sf *SF) ListExecutions(nextToken *string, statusFilter string) ([]*sfn.Exe
 }
 
 func (sf *SF) GetExecutionHistory(executionArn string, includeExecutionData bool) (events []*sfn.HistoryEvent) {
+	defer func() {
+		if err := recover(); err != nil {
+			switch err.(type) {
+			case *sfn.ExecutionDoesNotExist:
+				fmt.Fprintf(os.Stderr, "\n%s\n", err)
+			default:
+				panic(err)
+			}
+		}
+	}()
 	params := sfn.GetExecutionHistoryInput{
 		ExecutionArn:         &executionArn,
 		IncludeExecutionData: &includeExecutionData,

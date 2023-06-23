@@ -27,28 +27,6 @@
 				"email": "cio_customer.customer.email",
 				"status": "cio_customer.customer.status"
 			}
-		},
-		"[UPDATE] [FORM] Prepare customer data": {
-			"Input": {
-				"customer_io": "customer_io",
-				"email": "user.email",
-				"region": "region",
-				"status": "user.status"
-			},
-			"Output": {
-				"email": "cio_customer.customer.email",
-				"status": "cio_customer.customer.status"
-			}
-		},
-		"[UPDATE] [LMS] Prepare customer data": {
-			"Input": {
-				"email": "lms_user.email",
-				"region": "region"
-			},
-			"Output": {
-				"email": "cio_customer.customer.email",
-				"status": "cio_customer.customer.status"
-			}
 		}
 	}
 }
