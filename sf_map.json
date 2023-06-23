@@ -1,0 +1,56 @@
+{
+	"SFArn": "arn:aws:states:sa-east-1:787732066160:stateMachine:CustomerIOWorkflow-N9qFMNLBtmP3",
+	"NextToken": null,
+	"ParallelListExecutions": 3,
+	"ParallelExecutionHistories": 200,
+	"FromUnixTimestamp": 0,
+	"ToUnixTimestamp": 0,
+	"States": {
+		"[CREATE] [FORM] Prepare customer data": {
+			"Input": {
+				"customer_io": "customer_io",
+				"email": "user.email",
+				"region": "region",
+				"status": "user.status"
+			},
+			"Output": {
+				"email": "cio_customer.customer.email",
+				"status": "cio_customer.customer.status"
+			}
+		},
+		"[CREATE] [LMS] Prepare customer data": {
+			"Input": {
+				"customer_io": "customer_io",
+				"email": "user.email",
+				"region": "region",
+				"status": "user.status"
+			},
+			"Output": {
+				"email": "cio_customer.customer.email",
+				"status": "cio_customer.customer.status"
+			}
+		},
+		"[UPDATE] [FORM] Prepare customer data": {
+			"Input": {
+				"customer_io": "customer_io",
+				"email": "user.email",
+				"region": "region",
+				"status": "user.status"
+			},
+			"Output": {
+				"email": "cio_customer.customer.email",
+				"status": "cio_customer.customer.status"
+			}
+		},
+		"[UPDATE] [LMS] Prepare customer data": {
+			"Input": {
+				"email": "lms_user.email",
+				"region": "region"
+			},
+			"Output": {
+				"email": "cio_customer.customer.email",
+				"status": "cio_customer.customer.status"
+			}
+		}
+	}
+}
