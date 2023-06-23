@@ -8,7 +8,7 @@ import (
 )
 
 func ExecuteMap(command string) {
-	parallelListExecutions := flag.Int("pList", 3, "Parallel listing executions (>= 1)")
+	parallelListExecutions := flag.Int("pList", 1, "Parallel listing executions (>= 1)")
 	parallelExecutionHistories := flag.Int("pExec", 200, "Parallel executions (>= 1)")
 	flag.Parse()
 
